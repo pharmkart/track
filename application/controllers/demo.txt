@@ -1,0 +1,52 @@
+<div style="border: 1px solid #E7E7E7;padding: 5px;">
+						<form method="POST" align="center" id="pincheck1" style="display:none;">
+							<b>Check your delivery options: </b><br><input placeholder="Enter Pincode" type="text" id="pin1">
+							<input type="button" onclick="getdata1()" value="Check" class="button">
+						</form>
+						<div id="msg1">
+							<div id="msg"><img src="image/pincode/l.png" width="15" height="15">Delivery option for: <b>12346</b>&nbsp;&nbsp;<form><input type="button" onclick="showform1()" value="Change" class="button"></form><br><img src="image/pincode/x.png" width="10px" height="10px">&nbsp;Status:<font color="211B1F">Sorry we do not deliver this pincode area</font><br><br></div>						</div>
+					  </div>
+
+
+response
+
+
+<img src='image/pincode/l.png' width='15' height='15'>Delivery option for: <b>11100111</b>&nbsp;&nbsp;<form><input type = 'button'  onClick = 'showform1()' value='Change' class='button' /></form><br /><img src='image/pincode/x.png' width='10px' height='10px'>&nbsp;Status<font color = '211B1F'>:Sorry we do not deliver this pincode area</font><br />
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+					function getdata1(){
+						var pin = $("#pin1").val();
+						if(pin != ''){
+							$.ajax({
+								type: "POST",
+								url: "?route=product/product/pinCheck",
+								data: {pincode: pin},
+								dataType : "text"
+							}).done(function( result ) 
+							{
+								$("#msg1").show();
+								$("#msg1").html( result );
+								$("#pincheck1").hide();
+								
+							});
+						}
+						else{
+							alert('Please enter a valid Pincode');
+						}
+					}
+					function showform1(){
+						$("#msg1").hide();
+						$("#pincheck1").show();
+					}
+				</script>
